@@ -152,6 +152,7 @@ setup(
     scripts=[
         'scripts/paperwork',
         'scripts/paperwork-chkdeps',
+        'scripts/paperwork-import',
     ],
     install_requires=[
         "Cython",

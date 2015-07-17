@@ -1,0 +1,27 @@
+#!/usr/bin/env python2
+
+from __future__ import unicode_literals
+
+"""Command-line tool for importing some pdf."""
+
+import sys
+from paperwork.backend.docimport import IMPORTERS
+from paperwork.backend.config import PaperworkConfig
+from paperwork.paperwork import init_logging
+
+
+def main():
+    init_logging()
+
+    config = PaperworkConfig()
+    config.read()
+
+    docsearch = None
+    for file in sys.argv[1:]:
+        for importer in IMPORTERS:
+            if importer.can_import(file):
+                importer.import_doc(file, config, docsearch)
+
+
+if __name__ == '__main__':
+    main()
